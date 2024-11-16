@@ -1,0 +1,13 @@
+nav ul{
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    background: rgb(0, 51, 66);
+    padding: 20px;
+    font-size: 24px;
+    margin: 0;
+}
+nav a{
+    color: #FFF;
+    text-decoration: none;
+}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 function Counter(){
@@ -6,6 +6,12 @@ function Counter(){
 
     let increment = () => setCnt(cnt + 1)
     let decrement = () => setCnt(cnt - 1)
+
+    useEffect(() => {
+        console.log("Привет", cnt);    
+        return () => console.log("Пока");
+            
+    }, [cnt]);
 
     return (
         <div>

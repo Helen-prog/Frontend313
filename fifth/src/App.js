@@ -1,58 +1,54 @@
+import ImageGallery from 'react-image-gallery';
 import { useState } from 'react';
-import Quizzes from './components/quizzes/Quizzes';
+import data from './data.json';
 import './App.css';
 
-const questions = [
-  {
-    title: 'В каком месте HTML документа может располагаться JavaScript код?',
-    variants: ['В секциях <head> и <body>', 'В секции <html>', 'В блоке <div>'],
-    correct: 0
-  },
-  {
-    title: 'Выберите комментарий использующийся в JavaScript:',
-    variants: ['// Я являюсь комментарием', '<!-- Я являюсь комментарием -->', '# Я являюсь комментарием'],
-    correct: 0
-  },
-  {
-    title: 'Чувствителен ли JavaScript к регистру символов?',
-    variants: ['Нет', 'Да', 'Не всегда'],
-    correct: 1
-  },
-  {
-    title: 'Какое событие позволяет выполнять код после щелчка мыши?',
-    variants: ['mouseout', 'mouseclick', 'onclick', 'onmouseclick'],
-    correct: 2
-  },
-  {
-    title: 'Выберите метод JavaScript позволяющий выполнять произвольный код через заданные промежутки времени:',
-    variants: ['callCode()', 'timer()', 'setInterval()', 'setTimeOut()'],
-    correct: 3
-  },
-  {
-    title: 'Укажите название встроенного JavaScript объекта для работы с датой и временем',
-    variants: ['date', 'calendar', 'datetime', 'timeDate'],
-    correct: 0
-  },
-  {
-    title: 'Выберите JavaScript команду для вызова окна оповещения:',
-    variants: ['window()', 'confirm()', 'alert()', 'show()'],
-    correct: 2
-  },
-]
+function App(){
+    const collections = data.collections;
+    const cats = data.categories;
+    const [searchValue, setSearchValue] = useState("");
+    const [categoryId, setCategoryId] = useState(0);
+    
+    return (
+        <div>
+            <h1>Моя коллекция фотографий</h1>
 
-function App() {
-  const [step, setStep] = useState(0);
-  const question = questions[step];
+            <div className="top">
+                <ul className="tags">
+                    {
+                        cats.map((obj, index) => (
+                            <li
+                                className={categoryId == index ? 'active' : ''}
+                                key={index}
+                                onClick={() => setCategoryId(index)}
+                            >
+                                {obj.name}
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
 
-  const onClickVariant = (variant) => {
-    setStep(step + 1);
-  }
+            <div className="search">
+                <input type="text" className="search-input" placeholder='Поиск по назанию'
+                value={searchValue}
+                onChange={e => setSearchValue(e.target.value)} />
+            </div>
 
-  return (
-    <div className="main">
-      <Quizzes question={question} onClickVariant={onClickVariant} />
-    </div>
-  );
+            <div className="image-gallery-wrapper">
+                {
+                    collections
+                    .filter(obj => obj.name.toLowerCase().includes(searchValue.toLowerCase()) && (categoryId === obj.category || categoryId === 0))
+                    .map((obj, index) => (
+                        <div className="collection" key={index}>
+                            <h2>{obj.name}</h2>
+                            <ImageGallery items={obj.photos} />
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    )
 }
 
 export default App;

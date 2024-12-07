@@ -1,0 +1,408 @@
+// Generic (общие типы или обобщения)
+
+class User<T, K extends number>{
+    constructor(public name: T, public age: K){}
+
+    public getPsw(): string{
+        return `${this.name}${this.age}`
+    }
+
+    public getSecret(): number{
+        return this.age * 2;
+    }
+}
+
+// const obj1 = new User("Igor", "25");
+const obj2= new User(123, 456);
+const obj3= new User("Irina", 26);
+// const obj4= new User(4565, "возрост");
+
+
+// console.log(obj1.getPsw());
+console.log(obj2.getPsw());
+console.log(obj3.getPsw());
+// console.log(obj4.getPsw());
+
+console.log(obj2.getSecret())
+console.log(obj3.getSecret())
+
+
+
+// function getter<T>(data: T): T{
+//     return data;
+// }
+
+// function getter(data: string): string{
+//     return data;
+// }
+
+// function getter(data: Array<number>): Array<number>{
+//     return data;
+// }
+
+
+
+// console.log(getter<string>('test').length);
+// console.log(getter<Array<number>>([7,9,8,4,5,6,1,2,3,4]).length);
+
+
+// Интерфейсы
+
+// interface User{
+//    name: string,
+//    age: number,   
+// }
+
+// interface Admin extends User{
+//     getPsw(): string
+// }
+
+// class Person implements Admin{
+//     name: string = "Igor";
+//     age: number = 25;
+//     login: string = "admin";
+
+//     getPsw(){
+//         return `${this.name}${this.age}`
+//     }
+// }
+
+// let person = new Person();
+// console.log(person);
+
+// interface User{
+//    name: string,
+//    age: number,   
+// }
+
+// interface Psw{
+//     getPsw(): string
+// }
+
+// class Person implements User, Psw{
+//     name: string = "Igor";
+//     age: number = 25;
+//     login: string = "admin";
+
+//     getPsw(){
+//         return `${this.name}${this.age}`
+//     }
+// }
+
+// let person = new Person();
+// console.log(person);
+// console.log(person.getPsw());
+
+
+
+// interface User{
+//    readonly name: string,
+//    age: number,
+//    [propName: string]: any;
+// }
+
+// const person: User = {
+//     name: "Igor",
+//     age: 25,
+//     login: "admin",
+//     test: true
+// }
+
+// console.log(person);
+// // person.name = "Viktor";
+// console.log(person);
+
+
+// // Пространство имен и модули
+// namespace Utils{
+//     export const SECRET: string = "123456";
+//     export const getPsw = (name: string, age: number): string => `${name}${age}`
+// }
+
+// const password = Utils.getPsw("Igor", 25);
+
+// console.log(password);
+// console.log(Utils.SECRET);
+
+
+
+// Абстрактные классы
+// abstract class User{
+//     constructor(public name:string, 
+//     public age:number){}
+
+//     greet(): void{
+//         console.log(this.name);
+//     }
+
+//     abstract getPsw(): string;
+// }
+
+// class Person extends User{
+//     tel: string;
+
+//     constructor(name:string, age:number, tel:string){
+//         super(name, age);
+//         this.tel = tel;
+//     }
+
+//     getPsw(): string{
+//         return `${this.age}${this.name}`;
+//     }
+// }
+
+// const obj = new Person("Igor", 25, "+7 999 789 45 61");
+// console.log(obj);
+// console.log(obj.getPsw());
+
+
+// // Наследование
+// class User{
+//     private login: string = "sample"; 
+//     static secret = 123456;
+
+//     constructor(public name:string, 
+//         public age:number){}
+
+//     getPsw(): string{
+//         return `${this.name}${User.secret}`;
+//     }
+// }
+
+// class Person extends User{
+//     tel: string;
+
+//     constructor(name:string, age:number, tel:string){
+//         super(name, age);
+//         this.tel = tel;
+//     }
+
+//     getPsw(): string{
+//         return `${this.age}${super.getPsw()}`;
+//     }
+// }
+
+// const obj = new User("Igor", 25);
+// const obj1 = new Person("Irina", 30, "+7 999 123 45 67");
+
+// console.log(obj);
+// console.log(obj.getPsw());
+// console.log(obj1);
+// console.log(obj1.getPsw());
+
+
+// Класс
+
+// class User{
+
+//     static secret = 123456;
+
+//     constructor(public name:string, 
+//         private age:number, 
+//         public login: string, 
+//         public psw:string){}
+
+//     set userAge(age: number){
+//         this.age = age;
+//     }
+
+//     setAge(age: number){
+//         this.age = age;
+//     }
+
+//     get userAge(){
+//         return this.age;
+//     }
+// }
+
+// console.log(User.secret);
+
+// const obj = new User("Igor", 25, "sample", "qwerty");
+// obj.userAge = 30;
+// console.log(obj);
+// obj.setAge(35);
+// console.log(obj);
+
+// console.log(obj.userAge);
+
+
+// class User{
+//     public name: string;
+//     private age: number = 25;
+//     protected login: string = "sample";
+
+//     constructor(name:string){
+//         this.name = name;        
+//     }
+
+//     getPsw(): string{
+//         return `${this.login}${this.age}`
+//     }
+// }
+
+// const obj = new User("Igor");
+// console.log(obj);
+// console.log(obj.getPsw());
+
+
+
+// class User{
+//     public name: string;
+//     private age: number;
+//     protected login: string;
+//     readonly psw: string;
+
+//     constructor(name:string, age:number, login: string, psw:string){
+//         this.name = name;
+//         this.age = age;
+//         this.login = login;
+//         this.psw = psw;
+//     }
+// }
+
+// const obj = new User("Igor", 25, "sample", "qwerty");
+// console.log(obj);
+
+// obj.name = "Olga";
+// obj.psw = "123";
+// console.log(obj.name);
+// console.log(obj.psw);
+
+
+
+// Объекты
+// let user1: any = {
+//     name: "Igor",
+//     age: 25
+// }
+// user1.login = "sample";
+
+// type Person = {name: string, age: number, login?: string, getLogin?: () => string}
+
+// let user: Person = {
+//     name: "Igor",
+//     age: 25,
+//     login: "sample"
+// }
+
+// let admin: Person = {
+//     name: "Irina",
+//     age: 20,
+//     getLogin(): string {
+//         return `${this.name}${this.age}`
+//     }
+// }
+
+
+
+// console.log(user);
+// console.log(admin);
+// console.log(admin.name);
+
+
+
+// // Функции
+
+// const createPassword = (name:string="Irina", age:number|string=20)
+// :string => `${name}${age}`;
+
+// console.log(createPassword("Igor", 25));
+// console.log(createPassword("Igor", "15"));
+// console.log(createPassword());
+
+
+// Перечисление (Enums)
+
+// const enum Links{
+//     youtube = "https://www.youtube.com",
+//     gitHub = "https://github.com",
+//     vk = "https://vk.com/"
+// }
+
+// const arr = [Links.youtube, Links.gitHub, Links.vk];
+
+// console.log(arr);
+
+// console.log(Links.youtube);
+// console.log(Links.gitHub);
+// console.log(Links.vk);
+
+// enum Directions{
+//     Up = 3,
+//     Down = 5,
+//     Left = 7,
+//     Right
+// }
+
+// console.log(Directions[3]);
+// console.log(Directions[5]);
+// console.log(Directions[7]);
+// console.log(Directions[8]);
+
+// console.log(Directions.Up);
+// console.log(Directions.Down);
+// console.log(Directions.Left);
+// console.log(Directions.Right);
+
+// Пользовательский тип данных
+// type Custom = string;
+
+// let id: Custom;
+
+// id = "one";
+// id = 7;
+
+
+// let id: number | string;
+
+// id = 10;
+// id = "один";
+// id = true;
+
+
+// let n: any = false;
+// n = true
+// n = 45;
+// n = "hello";
+
+// let x: [any, any] = ["hello", 5];
+// let y: Array<any> = [5, "hello", true];
+
+
+// let x: [string, number];
+// x = ["hello", 5];
+
+// let y: [string, number] = ["goodbye", 7];
+
+
+// let mas1: number[] = [1, 2, 3];
+// let mas2: Array<number> = [1, 2, 3];
+
+// console.log(mas1);
+// console.log(mas2);
+
+
+// const hello = (): void => {
+//     console.log("Hello");
+//     }
+
+
+// hello();
+
+
+// const u: undefined = undefined;
+// const n: null = null;
+
+// const firstName: string = 'Igor';
+// const st: string = `Hello, ${firstName}`;
+// console.log(st);
+
+
+// const num1: number = 6;
+// const num2: number = 6.2;
+
+
+// let b: boolean = false;
+
+// b = true;
+// b = "15";

@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 
 function AboutInfo(){
     let {id} = useParams();
-    let navigate = useNavigate();
-
+ 
+   let navigate = useNavigate();
     let [post, setPost] = useState([null]);
 
     let goBack = () => navigate(-1);

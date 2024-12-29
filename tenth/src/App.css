@@ -136,3 +136,7 @@ body {
     background: #365a00;
     color: #FFF;
 }
+
+.toys-control svg{
+    cursor: pointer;
+}

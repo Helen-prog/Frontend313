@@ -6,13 +6,18 @@ import EditToysForm from './EditToysForm.tsx';
 interface SingleToyProps {
     toy: Toys;
     updateToys: (newToys: Toys) => void;
+    deleteToys: (id: number) => void;
 }
 
-const SingleToy: FC<SingleToyProps> = ({ toy, updateToys }) => {
+const SingleToy: FC<SingleToyProps> = ({ toy, updateToys, deleteToys }) => {
     const [edit, setEdit] = useState<boolean>(false);
 
     const handleToggleEdit = () => {
         setEdit(!edit);
+    }
+
+    const handleDelete = () => {
+        deleteToys(toy.id);
     }
 
     return (
@@ -24,7 +29,7 @@ const SingleToy: FC<SingleToyProps> = ({ toy, updateToys }) => {
             </div>
             <div className="toys-control">
                 <MdModeEdit onClick={handleToggleEdit} />
-                <MdDelete />
+                <MdDelete onClick={handleDelete} />
             </div>
             {
                 edit ? <EditToysForm data={toy} updateToys={updateToys} handleToggleEdit={handleToggleEdit} /> : null

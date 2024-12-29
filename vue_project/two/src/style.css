@@ -1,0 +1,38 @@
+body{
+    background: lightyellow;
+}
+
+.content{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card{
+    background: #FFF;
+    border: 2px solid orange;
+    padding: 10px 20px;
+    margin: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn{
+    background: orange;
+    border: 0;
+    padding: 4px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.green{
+    color: green;
+    background: lightgreen;
+}
+
+.blur{
+    color: blue;
+    background: lightblue;
+}

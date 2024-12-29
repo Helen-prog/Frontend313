@@ -5,14 +5,15 @@ import SingleToy from './SingleToy.tsx';
 interface DisplayToysProps {
     toysList: Toys[];
     updateToys: (newToys) => void;
+    deleteToys: (id: number) => void;
 }
 
-const DisplayToys: FC<DisplayToysProps> = ({ toysList, updateToys }) => {
+const DisplayToys: FC<DisplayToysProps> = ({ toysList, updateToys, deleteToys }) => {
     return (
         <div className="container">
             {
                 toysList.map(toy => {
-                    return <SingleToy key={toy.id} toy={toy} updateToys={updateToys} />;
+                    return <SingleToy key={toy.id} toy={toy} updateToys={updateToys} deleteToys={deleteToys} />;
                 })
             }
         </div>

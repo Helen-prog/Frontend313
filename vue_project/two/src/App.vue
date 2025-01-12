@@ -78,7 +78,6 @@
               <div class="mb-3">
                 <label for="country" class="form-label">Страна</label>
                 <input @blur="v$.country.$touch()" :class="{'is-invalid': v$.country.$error}" type="text" v-model="country" class="form-control" id="country">
-<!-- v-molel => v-model -->
                 <div v-if="v$.country.$error"><small>В поле не должны содержаться цифры и спецсимволы</small></div>
               </div>
 
@@ -90,7 +89,7 @@
               </div>
 
               <button @click="backStep" type="button" class="btn btn-light">Назад</button>
-              <button class="btn btn-primary">Зарегистрироваться</button>
+              <button class="btn btn-primary" :disabled="disabledRegister">Зарегистрироваться</button>
             </div>
           </Transition>
 
@@ -142,6 +141,18 @@ export default {
       console.log("Регистрация прошла успешно");
       console.log(this.name);     
 
+      this.step = 1
+      
+      this.name = "",
+      this.surname = "",
+      this.email = "",
+      this.psw = "",
+      this.psw2 = "",
+      this.country = "",
+      this.city = ""
+
+      this.v$.$reset()
+
     }
   },
   computed: {
@@ -150,6 +161,9 @@ export default {
     },
     disabledBtn2(){
       return this.v$.psw.$invalid || this.v$.psw2.$invalid 
+    },
+    disabledRegister(){
+      return this.v$.country.$invalid || this.v$.city.$invalid
     }
   },
   validations () {
